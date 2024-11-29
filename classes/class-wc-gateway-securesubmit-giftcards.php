@@ -425,7 +425,11 @@ class WC_Gateway_SecureSubmit_GiftCards extends WC_Gateway_SecureSubmit
 
     protected function getCartDiscountTotal()
     {
-        return WC()->cart->get_cart_discount_total();
+		$discount = WC()->cart->get_cart_discount_total();
+		if(!$discount){
+			$discount = WC()->cart->get_discount_total();
+		}
+        return $discount;
     }
 
     protected function giftCardService()
@@ -450,6 +454,7 @@ class WC_Gateway_SecureSubmit_GiftCards extends WC_Gateway_SecureSubmit
     protected function getOriginalCartTotal()
     {
         $cart_totals = WC()->session->get('cart_totals');
+        $discount = $this->getCartDiscountTotal();
         $original_total = round(
             array_sum(
                 array(
@@ -459,6 +464,7 @@ class WC_Gateway_SecureSubmit_GiftCards extends WC_Gateway_SecureSubmit
                     (!empty($cart_totals['shipping_tax']) ? $cart_totals['shipping_tax'] : 0),
                     (!empty($cart_totals['fee_total']) ? $cart_totals['fee_total'] : 0),
                     (!empty($cart_totals['fee_tax']) ? $cart_totals['fee_tax'] : 0),
+                    (!empty($discount) ? ($discount > 0 ? ($discount * -1) : $discount) : 0),
                 )
             ),
             2
