@@ -1,6 +1,6 @@
 === WooCommerce SecureSubmit Gateway ===
-Contributors: markhagan, marksmedal
-Tags: woocommerce, woo, commerce, heartland, payment, systems, gateway, token, tokenize, save cards
+Contributors: markhagan
+Tags: woocommerce, woo, heartland, payment, tokenize
 Tested up to: 6.6.2
 Stable tag: trunk
 License: GPLv2
