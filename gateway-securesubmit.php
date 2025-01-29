@@ -15,7 +15,7 @@ class WooCommerceSecureSubmitGateway
 
     public function __construct()
     {
-        add_action('plugins_loaded', array($this, 'init'), 0);
+        add_action('init', array($this, 'init'), 0);
         add_action('woocommerce_load', array($this, 'activate'));
         add_action('wp_enqueue_scripts', array($this, 'loadScripts'));
     }
