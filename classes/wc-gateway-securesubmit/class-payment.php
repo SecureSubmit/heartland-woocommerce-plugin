@@ -387,7 +387,7 @@ class WC_Gateway_SecureSubmit_Payment
 
     private function getVelocityVarPrefix()
     {
-        return sprintf('HeartlandHPS_Velocity%s', md5($this->getRemoteIP()));
+        return sprintf('HeartlandHPS_Velocity%s', md5(WC_Geolocation::get_ip_address()));
     }
 
     private function getRemoteIP()
